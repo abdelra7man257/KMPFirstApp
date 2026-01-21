@@ -5,16 +5,18 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 @Composable
-fun NetworkImageComposable(modifier: Modifier = Modifier, imageUrl: String?,  onLoading:@Composable ()-> Unit = {}, onFailed: @Composable ()-> Unit = {}
+fun NetworkImageComposable(modifier: Modifier = Modifier, imageUrl: String?, contentScale: ContentScale = ContentScale.Fit, onLoading:@Composable ()-> Unit = {}, onFailed: @Composable ()-> Unit = {}
 ){
     if (imageUrl?.isNotEmpty() == true) {
         KamelImage(
         resource = { asyncPainterResource(data = imageUrl) },
         contentDescription = "",
+            contentScale = contentScale,
         modifier = modifier.size(200.dp),
             onLoading = {
                 onLoading.invoke()

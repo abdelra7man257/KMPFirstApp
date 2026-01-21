@@ -1,6 +1,7 @@
 package com.example.kmpfirstapp.composables
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,18 +13,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import models.ProductsResponseItem
+import com.example.kmpfirstapp.models.ProductsResponseItem
 
 @Composable
 fun ProductItemComposable(
     modifier: Modifier = Modifier,
     product: ProductsResponseItem?,
     onContentImageLoading: @Composable ()-> Unit={},
-    onContentImageFailed: @Composable ()-> Unit={}
+    onContentImageFailed: @Composable ()-> Unit={},
+    onItemClicked: (product: ProductsResponseItem)-> Unit = {}
 ) {
 
     if (product!=null){
-        Row(modifier = modifier.fillMaxWidth() , horizontalArrangement = Arrangement.SpaceBetween) {
+        Row(modifier = modifier.fillMaxWidth().clickable{
+            onItemClicked.invoke(product)
+        }, horizontalArrangement = Arrangement.SpaceBetween) {
             NetworkImageComposable(
                 imageUrl = product.image, onLoading = {
                     onContentImageLoading.invoke()

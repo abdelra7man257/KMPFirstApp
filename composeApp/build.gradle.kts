@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.3.0" // ✅ ضع نفس نسخة Kotlin
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
@@ -36,6 +36,9 @@ kotlin {
         }
         commonMain.dependencies {
 
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.koin.compose)
+            implementation(libs.navigation.compose)
             implementation(libs.koin.core)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
@@ -44,10 +47,7 @@ kotlin {
             implementation(libs.kamel.image.default)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.coroutines.core)
-
-
             implementation(libs.koin.androidx.compose)
-
             implementation(libs.runtime)
             implementation(libs.foundation)
             implementation(libs.material3)

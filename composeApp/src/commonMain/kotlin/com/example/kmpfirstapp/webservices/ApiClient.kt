@@ -45,8 +45,4 @@ val apiClient = module {
     }
 }
 
-fun getApiClient(): HttpClient{
-    val apiClient: HttpClient = getKoin().get()
-    return apiClient
-}
 

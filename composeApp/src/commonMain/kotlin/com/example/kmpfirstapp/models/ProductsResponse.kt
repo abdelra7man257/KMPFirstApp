@@ -1,4 +1,4 @@
-package models
+package com.example.kmpfirstapp.models
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
